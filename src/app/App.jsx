@@ -5,8 +5,8 @@ import {
   Route,
 } from "react-router-dom";
 
-import HomePage from "./pages/home/HomePage";
-import Layout from "./components/Layout";
+import HomePage from "../pages/home/HomePage";
+import Layout from "../components/layout/Layout";
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
