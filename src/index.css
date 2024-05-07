@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+    background: #D96907;
+    min-height: 100lvh;
+}
