@@ -1,5 +1,23 @@
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
+
+import HomePage from "./pages/home/HomePage";
+import Layout from "./components/Layout";
+
+const appRouter = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<Layout />}>
+      <Route index element={<HomePage />} />
+    </Route>,
+  ),
+);
+
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return <RouterProvider router={appRouter} />;
 };
 
 export default App;
