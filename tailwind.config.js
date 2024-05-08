@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        "header-bg": "#434A59",
+        gray: "#434A59",
         logo: "#D92D07",
-        background: "#BFBFBF",
-        text: "#F2F2F2",
-        "article-bg": "#010A26",
+        "light-gray": "#BFBFBF",
+        white: "#F2F2F2",
+        navy: "#010A26",
       },
     },
   },
