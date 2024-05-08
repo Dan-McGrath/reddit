@@ -1,23 +1,33 @@
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
-import { faDownLong, faUpLong } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDownLong,
+  faUpLong,
+  faCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatDistanceStrict, fromUnixTime } from "date-fns";
 
 const PostSample = ({ post }) => {
-  if (post.secure_media) {
-    console.log(post.secure_media.reddit_video.dash_url);
-  }
+  const today = Date.now();
+  const created = fromUnixTime(post.created_utc);
 
   return (
     <>
-      <h3>{post.title}</h3>
-      <h4>{post.subreddit_name_prefixed}</h4>
+      <div className="flex gap-2 items-center my-1">
+        <h3>{post.subreddit_name_prefixed}</h3>
+        <div className="flex items-center gap-2 text-light-gray">
+          <FontAwesomeIcon icon={faCircle} className="text-white w-1" />
+          <p>{formatDistanceStrict(created, today)} ago</p>
+        </div>
+      </div>
+      <h4 className="text-xl font-bold my-2">{post.title}</h4>
       {post.secure_media ? (
         <>
           <video
             autoPlay
             muted
             controls
-            className="max-w-full m-auto max-h-dvh"
+            className="max-w-full m-auto max-h-dvh rounded-xl"
           >
             <source
               src={post.secure_media.reddit_video.fallback_url}
@@ -30,7 +40,7 @@ const PostSample = ({ post }) => {
           <>
             <img
               src={post.preview.images[0].source.url}
-              className="max-w-full m-auto"
+              className="max-w-full m-auto rounded-xl"
             />
           </>
         )
@@ -48,7 +58,7 @@ const PostSample = ({ post }) => {
           />
         </div>
         <div className="mx-4 flex items-center justify-between bg-gray rounded-full">
-          <FontAwesomeIcon icon={faMessage} className="px-2 py-1 mx-1" />
+          <FontAwesomeIcon icon={faMessage} className="pl-2 py-1 ml-1" />
           <p className="px-2 py-1">{post.num_comments}</p>
         </div>
       </div>
