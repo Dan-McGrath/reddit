@@ -1,9 +1,9 @@
-import Posts from "../../features/posts/Posts";
+import SamplePosts from "../../features/posts/SamplePosts";
 
 const HomePage = () => {
   return (
     <>
-      <Posts />
+      <SamplePosts />
     </>
   );
 };
