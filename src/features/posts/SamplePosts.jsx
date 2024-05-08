@@ -19,14 +19,16 @@ const SamplePosts = () => {
   return (
     <>
       <section className="grid grid-cols-12">
-        <h2>Popular</h2>
         {posts.map((post) => (
-          <div
-            key={post.data.id}
-            className="rounded border my-3 p-2 mx-2 hover:bg-navy cursor-pointer col-start-3 col-end-11"
-          >
-            <PostSample post={post.data} />
-          </div>
+          <>
+            <div
+              key={post.data.id}
+              className="rounded-xl my-3 px-8 mx-2 hover:bg-navy cursor-pointer col-start-3 col-end-11"
+            >
+              <PostSample post={post.data} />
+            </div>
+            <hr className="col-start-3 col-end-11 my-2 text-gray" />
+          </>
         ))}
       </section>
     </>
