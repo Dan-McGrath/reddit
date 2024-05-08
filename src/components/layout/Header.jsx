@@ -2,7 +2,7 @@ import { faReddit } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Header = () => {
   return (
-    <header className="bg-text">
+    <header className="bg-header-bg">
       <FontAwesomeIcon
         icon={faReddit}
         className="text-3xl text-logo bg-white rounded-full m-3"
