@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const loadAllPosts = createAsyncThunk("posts/loadAllPosts", async () => {
-  const data = await fetch("https://www.reddit.com/r/popular.json");
+  const data = await fetch("https://www.reddit.com/r/popular.json?raw_json=1");
   const json = await data.json();
   return json.data.children;
 });
