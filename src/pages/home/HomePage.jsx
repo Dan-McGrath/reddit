@@ -1,5 +1,11 @@
+import Posts from "../../features/posts/Posts";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <Posts />
+    </>
+  );
 };
 
 export default HomePage;
