@@ -1,5 +1,5 @@
-const Post = () => {
-  return <div>Post</div>;
+const PostDetail = () => {
+  return <div>PostDetail</div>;
 };
 
-export default Post;
+export default PostDetail;
