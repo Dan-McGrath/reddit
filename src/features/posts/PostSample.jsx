@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDistanceStrict, fromUnixTime } from "date-fns";
+import { Link } from "react-router-dom";
 
 const PostSample = ({ post }) => {
   const today = Date.now();
@@ -46,32 +47,34 @@ const PostSample = ({ post }) => {
 
   return (
     <>
-      <div className="flex gap-2 items-center my-1">
-        <h3>{post.subreddit_name_prefixed}</h3>
-        <div className="flex items-center gap-2 text-light-gray">
-          <FontAwesomeIcon icon={faCircle} className="text-white w-1" />
-          <p>{formatDistanceStrict(created, today)} ago</p>
+      <Link to={post.permalink}>
+        <div className="flex gap-2 items-center my-1">
+          <h3>{post.subreddit_name_prefixed}</h3>
+          <div className="flex items-center gap-2 text-light-gray">
+            <FontAwesomeIcon icon={faCircle} className="text-white w-1" />
+            <p>{formatDistanceStrict(created, today)} ago</p>
+          </div>
         </div>
-      </div>
-      <h4 className="text-xl font-bold my-2">{post.title}</h4>
-      {mediaContent}
-      <div className="flex items-center">
-        <div className="flex justify-around max-w-28 items-center bg-gray rounded-full my-2">
-          <FontAwesomeIcon
-            icon={faUpLong}
-            className="rounded-full hover:bg-gray p-2 mx-1"
-          />
-          <p>{post.score}</p>
-          <FontAwesomeIcon
-            icon={faDownLong}
-            className="rounded-full p-2 mx-1"
-          />
+        <h4 className="text-xl font-bold my-2">{post.title}</h4>
+        {mediaContent}
+        <div className="flex items-center">
+          <div className="flex justify-around max-w-28 items-center bg-gray rounded-full my-2">
+            <FontAwesomeIcon
+              icon={faUpLong}
+              className="rounded-full hover:bg-gray p-2 mx-1"
+            />
+            <p>{post.score}</p>
+            <FontAwesomeIcon
+              icon={faDownLong}
+              className="rounded-full p-2 mx-1"
+            />
+          </div>
+          <div className="mx-4 flex items-center justify-between bg-gray rounded-full">
+            <FontAwesomeIcon icon={faMessage} className="pl-2 py-1 ml-1" />
+            <p className="px-2 py-1">{post.num_comments}</p>
+          </div>
         </div>
-        <div className="mx-4 flex items-center justify-between bg-gray rounded-full">
-          <FontAwesomeIcon icon={faMessage} className="pl-2 py-1 ml-1" />
-          <p className="px-2 py-1">{post.num_comments}</p>
-        </div>
-      </div>
+      </Link>
     </>
   );
 };
