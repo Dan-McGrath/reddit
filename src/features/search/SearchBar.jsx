@@ -15,9 +15,6 @@ const SearchBar = () => {
     dispatch(setSearchTerm(e.target.value));
   };
 
-  const onSearchTermClearHandler = () => {
-    dispatch(clearSearchTerm());
-  };
   return (
     <>
       <search className="min-w-fit">
@@ -36,11 +33,6 @@ const SearchBar = () => {
             onChange={onSearchChangeHandler}
             value={searchTerm}
           />
-          {searchTerm.length > 0 && (
-            <button onClick={onSearchTermClearHandler} type="button">
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-          )}
         </label>
       </search>
     </>
