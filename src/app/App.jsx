@@ -7,11 +7,16 @@ import {
 
 import HomePage from "../pages/home/HomePage";
 import Layout from "../components/layout/Layout";
+import PostDetail from "../features/posts/PostDetail";
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<Layout />}>
+    <Route path="/" element={<Layout />}>
       <Route index element={<HomePage />} />
+      <Route
+        path="/r/:subreddit/comments/:id/:title"
+        element={<PostDetail />}
+      />
     </Route>,
   ),
 );
