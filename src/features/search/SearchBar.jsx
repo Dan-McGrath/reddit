@@ -1,9 +1,23 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearSearchTerm,
+  selectSearchTerm,
+  setSearchTerm,
+} from "./searchSlice";
 
 const SearchBar = () => {
-  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
+  const searchTerm = useSelector(selectSearchTerm);
+
+  const onSearchChangeHandler = (e) => {
+    dispatch(setSearchTerm(e.target.value));
+  };
+
+  const onSearchTermClearHandler = () => {
+    dispatch(clearSearchTerm());
+  };
   return (
     <>
       <search className="min-w-fit">
@@ -19,9 +33,14 @@ const SearchBar = () => {
             type="search"
             placeholder="Search Reddit"
             className="placeholder:italic placeholder:text-dark-gray block bg-white w-full border border-dark-gray rounded-full py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-logo focus:ring-logo focus:ring-1 sm:text-sm text-dark-gray min-w-96"
-            onChange={(e) => setInput(e.target.value)}
-            value={input}
+            onChange={onSearchChangeHandler}
+            value={searchTerm}
           />
+          {searchTerm.length > 0 && (
+            <button onClick={onSearchTermClearHandler} type="button">
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+          )}
         </label>
       </search>
     </>
