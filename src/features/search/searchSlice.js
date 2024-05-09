@@ -20,9 +20,7 @@ export const searchSlice = createSlice({
     hasError: false,
   },
   reducers: {
-    setSearchTerm: (state, action) =>
-      (state.search.searchTerm = action.payload),
-    clearSearchTerm: (state) => (state.search.searchTerm = ""),
+    setSearchTerm: (state, action) => void (state.searchTerm = action.payload),
   },
   extraReducers: (builder) => {
     builder
