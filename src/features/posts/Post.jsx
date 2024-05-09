@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDistanceStrict, fromUnixTime } from "date-fns";
 
 const Post = ({ post }) => {
-  console.log(post);
   const today = Date.now();
   const created = fromUnixTime(post.created_utc);
   return (
