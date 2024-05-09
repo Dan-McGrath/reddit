@@ -11,6 +11,39 @@ const PostSample = ({ post }) => {
   const today = Date.now();
   const created = fromUnixTime(post.created_utc);
 
+  let mediaContent;
+  if (!post.secure_media) {
+    mediaContent = <></>;
+  } else if (post.secure_media.reddit_video) {
+    mediaContent = (
+      <>
+        <video
+          autoPlay
+          muted
+          controls
+          className="max-w-full m-auto max-h-dvh rounded-xl"
+        >
+          <source
+            src={post.secure_media.reddit_video.scrubber_media_url}
+            type="video/mp4"
+          />
+        </video>
+      </>
+    );
+  } else if (post.secure_media.oembed) {
+    mediaContent = <>{post.secure_media.oembed.html}</>;
+  }
+  if (post.preview) {
+    mediaContent = (
+      <>
+        <img
+          src={post.preview.images[0].source.url}
+          className="max-w-full m-auto rounded-xl"
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <div className="flex gap-2 items-center my-1">
@@ -21,30 +54,7 @@ const PostSample = ({ post }) => {
         </div>
       </div>
       <h4 className="text-xl font-bold my-2">{post.title}</h4>
-      {post.secure_media ? (
-        <>
-          <video
-            autoPlay
-            muted
-            controls
-            className="max-w-full m-auto max-h-dvh rounded-xl"
-          >
-            <source
-              src={post.secure_media.reddit_video.fallback_url}
-              type="video/mp4"
-            />
-          </video>
-        </>
-      ) : (
-        post.preview && (
-          <>
-            <img
-              src={post.preview.images[0].source.url}
-              className="max-w-full m-auto rounded-xl"
-            />
-          </>
-        )
-      )}
+      {mediaContent}
       <div className="flex items-center">
         <div className="flex justify-around max-w-28 items-center bg-gray rounded-full my-2">
           <FontAwesomeIcon
