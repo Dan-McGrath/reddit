@@ -17,8 +17,8 @@ export const loadAllComments = createAsyncThunk(
 export const commentSlice = createSlice({
   name: "comments",
   initialState: {
-    comments: {},
-    isLoadingComments: false,
+    comments: [],
+    isLoadingComments: true,
     hasError: false,
   },
   extraReducers: (builder) => {
