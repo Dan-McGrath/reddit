@@ -36,6 +36,7 @@ const Post = ({ post }) => {
         <h4 className="my-2 text-xl font-bold">{post.title}</h4>
       </section>
       <article
+        className="link"
         dangerouslySetInnerHTML={{ __html: post.selftext_html }}
       ></article>
       <div className="flex items-center">
