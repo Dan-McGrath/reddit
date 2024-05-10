@@ -27,16 +27,19 @@ const PostDetail = () => {
   const { postInfo, comments } = detail;
 
   return (
-    <>
-      <Post post={postInfo} />
-      <div>
+    <div className="grid grid-cols-12 mx-auto max-w-7xl">
+      <div className="col-start-3 col-end-11">
+        <Post post={postInfo} />
+      </div>
+      <hr className="col-start-3 col-end-11 row-start-2 row-end-3 my-2 text-gray" />
+      <div className="col-start-3 col-end-11">
         {comments.map((comment) => (
           <>
             <Comment comment={comment} key={comment.data.id} />
           </>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
