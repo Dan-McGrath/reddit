@@ -13,6 +13,20 @@ const PostSample = ({ post }) => {
   const created = fromUnixTime(post.created_utc);
 
   let mediaContent;
+  if (post.preview) {
+    mediaContent = (
+      <>
+        <div className="bg-black rounded-xl">
+          <img
+            src={post.preview.images[0].source.url}
+            className="m-auto max-w-fit rounded-xl max-h-100"
+            height={post.preview.images[0].source.height}
+            width={post.preview.images[0].source.width}
+          />
+        </div>
+      </>
+    );
+  }
   if (!post.secure_media) {
     mediaContent = <></>;
   } else if (post.secure_media.reddit_video) {
@@ -34,43 +48,33 @@ const PostSample = ({ post }) => {
   } else if (post.secure_media.oembed) {
     mediaContent = <>{post.secure_media.oembed.html}</>;
   }
-  if (post.preview) {
-    mediaContent = (
-      <>
-        <img
-          src={post.preview.images[0].source.url}
-          className="max-w-full m-auto rounded-xl"
-        />
-      </>
-    );
-  }
 
   return (
     <>
       <Link to={post.permalink}>
-        <div className="flex gap-2 items-center my-1">
+        <div className="flex items-center gap-2 my-1">
           <h3>{post.subreddit_name_prefixed}</h3>
           <div className="flex items-center gap-2 text-light-gray">
-            <FontAwesomeIcon icon={faCircle} className="text-white w-1" />
+            <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
             <p>{formatDistanceStrict(created, today)} ago</p>
           </div>
         </div>
-        <h4 className="text-xl font-bold my-2">{post.title}</h4>
-        {mediaContent}
+        <h4 className="my-2 text-xl font-bold">{post.title}</h4>
+        <div className="">{mediaContent}</div>
         <div className="flex items-center">
-          <div className="flex justify-around max-w-28 items-center bg-gray rounded-full my-2">
+          <div className="flex items-center justify-around my-2 rounded-full max-w-28 bg-gray">
             <FontAwesomeIcon
               icon={faUpLong}
-              className="rounded-full hover:bg-gray p-2 mx-1"
+              className="p-2 mx-1 rounded-full hover:bg-gray"
             />
             <p>{post.score}</p>
             <FontAwesomeIcon
               icon={faDownLong}
-              className="rounded-full p-2 mx-1"
+              className="p-2 mx-1 rounded-full"
             />
           </div>
-          <div className="mx-4 flex items-center justify-between bg-gray rounded-full">
-            <FontAwesomeIcon icon={faMessage} className="pl-2 py-1 ml-1" />
+          <div className="flex items-center justify-between mx-4 rounded-full bg-gray">
+            <FontAwesomeIcon icon={faMessage} className="py-1 pl-2 ml-1" />
             <p className="px-2 py-1">{post.num_comments}</p>
           </div>
         </div>
