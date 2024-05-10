@@ -6,10 +6,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDistanceStrict, fromUnixTime } from "date-fns";
-
+import Markdown from "react-markdown";
 const Post = ({ post }) => {
   const today = Date.now();
   const created = fromUnixTime(post.created_utc);
+
+  let mediaContent;
+  if (post.preview) {
+    mediaContent = (
+      <>
+        <img
+          width={post.preview.images[0].source.width}
+          height={post.preview.images[0].source.height}
+          src={post.preview.images[0].source.url}
+        />
+      </>
+    );
+  }
   return (
     <>
       <section>
@@ -22,7 +35,9 @@ const Post = ({ post }) => {
         </div>
         <h4 className="my-2 text-xl font-bold">{post.title}</h4>
       </section>
-      <article>{post.selftext}</article>
+      <article
+        dangerouslySetInnerHTML={{ __html: post.selftext_html }}
+      ></article>
       <div className="flex items-center">
         <div className="flex items-center justify-around my-2 rounded-full max-w-28 bg-gray">
           <FontAwesomeIcon
@@ -40,6 +55,7 @@ const Post = ({ post }) => {
           <p className="px-2 py-1">{post.num_comments}</p>
         </div>
       </div>
+      <div>{mediaContent}</div>
     </>
   );
 };
