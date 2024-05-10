@@ -9,7 +9,7 @@ const Header = () => {
       <Link to="/">
         <FontAwesomeIcon
           icon={faReddit}
-          className="col-end-2 m-3 text-4xl bg-white rounded-full text-logo"
+          className="col-end-2 m-3 text-5xl bg-white border-none rounded-full text-logo"
         />
       </Link>
       <div className="flex justify-center min-w-full col-start-3 col-end-11 m-auto">
