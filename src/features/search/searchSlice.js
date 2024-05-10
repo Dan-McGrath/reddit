@@ -7,7 +7,7 @@ export const loadSearchResults = createAsyncThunk(
       `https://www.reddit.com/search.json?q=${term}&raw_json=1`
     );
     const json = await data.json();
-    return json;
+    return json.data.children;
   }
 );
 
