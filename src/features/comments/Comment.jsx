@@ -46,10 +46,14 @@ const Comment = ({ comment }) => {
             className="p-2 mx-1 rounded-full"
           />
         </div>
-        <div className="flex items-center justify-between px-1 mx-4 rounded-full bg-gray hover:bg-white hover:text-dark-gray">
-          <FontAwesomeIcon icon={faMessage} className="py-1 pl-2 ml-1" />
-          <button className="px-2 py-1 ">{numReplies} Replies</button>
-        </div>
+        {numReplies > 0 && (
+          <>
+            <div className="flex items-center justify-between px-1 mx-4 rounded-full bg-gray hover:bg-white hover:text-dark-gray">
+              <FontAwesomeIcon icon={faMessage} className="py-1 pl-2 ml-1" />
+              <button className="px-2 py-1 ">{numReplies} Replies</button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
