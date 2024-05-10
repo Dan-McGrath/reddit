@@ -7,3 +7,9 @@
     min-height: 100lvh;
     color: #F2F2F2
 }
+
+.link {
+    a {
+        color: #D92D07
+    }
+}
