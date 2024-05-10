@@ -11,6 +11,9 @@ export default {
         navy: "#010A26",
         "dark-gray": "#0F1926",
       },
+      maxHeight: {
+        100: "32rem",
+      },
     },
   },
   plugins: [],
