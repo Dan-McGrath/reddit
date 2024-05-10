@@ -13,14 +13,14 @@ const Post = ({ post }) => {
   return (
     <>
       <section>
-        <div>
+        <div className="flex items-center gap-2 my-1">
           <h3>{post.subreddit_name_prefixed}</h3>
           <div className="flex items-center gap-2 text-light-gray">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
             <p>{formatDistanceStrict(created, today)} ago</p>
           </div>
         </div>
-        <h4>{post.title}</h4>
+        <h4 className="my-2 text-xl font-bold">{post.title}</h4>
       </section>
       <article>{post.selftext}</article>
       <div className="flex items-center">
