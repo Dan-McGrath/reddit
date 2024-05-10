@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="grid items-center grid-cols-12 gap-3 bg-gray justify-items-center">
+    <header className="grid items-center grid-cols-12 gap-3 py-1 bg-gray justify-items-center">
       <Link to="/">
         <FontAwesomeIcon
           icon={faReddit}
