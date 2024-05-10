@@ -33,7 +33,10 @@ const Comment = ({ comment }) => {
           <p>{formatDistanceStrict(today, created)} ago</p>
         </div>
       </div>
-      <p>{comment.data.body}</p>
+      <article
+        className="link"
+        dangerouslySetInnerHTML={{ __html: comment.data.body_html }}
+      ></article>
       <div className="flex items-center">
         <div className="flex items-center justify-around my-2 rounded-full max-w-28 bg-gray">
           <FontAwesomeIcon
