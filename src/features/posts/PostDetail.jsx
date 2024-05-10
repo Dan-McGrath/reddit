@@ -32,7 +32,7 @@ const PostDetail = () => {
       <div>
         {comments.map((comment) => (
           <>
-            <Comment comment={comment} />
+            <Comment comment={comment} key={comment.data.id} />
           </>
         ))}
       </div>
