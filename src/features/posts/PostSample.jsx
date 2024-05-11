@@ -7,46 +7,50 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDistanceStrict, fromUnixTime } from "date-fns";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const PostSample = ({ post }) => {
   const today = Date.now();
   const created = fromUnixTime(post.created_utc);
 
   let mediaContent;
-  if (post.preview) {
-    mediaContent = (
-      <>
-        <div className="bg-black rounded-xl">
-          <img
-            src={post.preview.images[0].source.url}
-            className="m-auto max-w-fit rounded-xl max-h-100"
-            height={post.preview.images[0].source.height}
-            width={post.preview.images[0].source.width}
-          />
-        </div>
-      </>
-    );
-  }
-  if (!post.secure_media) {
+  if (post.secure_media) {
+    if (post.secure_media.reddit_video) {
+      mediaContent = (
+        <>
+          <video
+            autoPlay
+            muted
+            controls
+            className="max-w-full m-auto max-h-dvh rounded-xl"
+          >
+            <source
+              src={post.secure_media.reddit_video.scrubber_media_url}
+              type="video/mp4"
+            />
+          </video>
+        </>
+      );
+    } else if (post.secure_media.oembed) {
+      mediaContent = <>{post.secure_media.oembed.html}</>;
+    }
+  } else if (!post.secure_media) {
+    if (post.preview) {
+      mediaContent = (
+        <>
+          <div className="bg-black rounded-xl">
+            <img
+              src={post.preview.images[0].source.url}
+              className="m-auto max-w-fit rounded-xl max-h-100"
+              height={post.preview.images[0].source.height}
+              width={post.preview.images[0].source.width}
+            />
+          </div>
+        </>
+      );
+    }
+  } else {
     mediaContent = <></>;
-  } else if (post.secure_media.reddit_video) {
-    mediaContent = (
-      <>
-        <video
-          autoPlay
-          muted
-          controls
-          className="max-w-full m-auto max-h-dvh rounded-xl"
-        >
-          <source
-            src={post.secure_media.reddit_video.scrubber_media_url}
-            type="video/mp4"
-          />
-        </video>
-      </>
-    );
-  } else if (post.secure_media.oembed) {
-    mediaContent = <>{post.secure_media.oembed.html}</>;
   }
 
   return (
@@ -81,6 +85,10 @@ const PostSample = ({ post }) => {
       </Link>
     </>
   );
+};
+
+PostSample.propTypes = {
+  post: PropTypes.object,
 };
 
 export default PostSample;

@@ -6,7 +6,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDistanceStrict, fromUnixTime } from "date-fns";
-import Markdown from "react-markdown";
+import PropTypes from "prop-types";
+
 const Post = ({ post }) => {
   const today = Date.now();
   const created = fromUnixTime(post.created_utc);
@@ -59,6 +60,10 @@ const Post = ({ post }) => {
       <div>{mediaContent}</div>
     </>
   );
+};
+
+Post.propTypes = {
+  post: PropTypes.object,
 };
 
 export default Post;
