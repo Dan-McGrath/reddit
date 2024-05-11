@@ -14,6 +14,9 @@ export default {
       maxHeight: {
         100: "32rem",
       },
+      maxWidth: {
+        100: "34rem",
+      },
     },
   },
   plugins: [],
