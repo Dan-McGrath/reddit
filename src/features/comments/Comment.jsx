@@ -14,7 +14,7 @@ const Comment = ({ comment }) => {
   const [showReplies, setShowReplies] = useState(false);
   const today = Date.now();
   const replies = comment.data.replies;
-  console.log(replies);
+
   let numReplies;
   if (replies) {
     numReplies = replies.data.children.length;
@@ -38,7 +38,7 @@ const Comment = ({ comment }) => {
         </div>
       </div>
       <article
-        className="link"
+        className="break-words link"
         dangerouslySetInnerHTML={{ __html: comment.data.body_html }}
       ></article>
       <div className="flex items-center">
@@ -68,13 +68,13 @@ const Comment = ({ comment }) => {
         )}
       </div>
       {showReplies && (
-        <>
+        <div className="relative left-10 max-w-fit">
           {replies.data.children.map((reply) => (
-            <>
+            <div key={reply.data.id}>
               <Replies reply={reply} />
-            </>
+            </div>
           ))}
-        </>
+        </div>
       )}
     </div>
   );
