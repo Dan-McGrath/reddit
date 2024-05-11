@@ -22,10 +22,12 @@ const PostSample = ({ post }) => {
             autoPlay
             muted
             controls
-            className="max-w-full m-auto max-h-dvh rounded-xl"
+            className="max-w-full m-auto max-h-28 rounded-xl md:max-h-60 lg:max-h-96 xl:max-h-100"
+            height={post.secure_media.reddit_video.height}
+            width={post.secure_media.reddit_video.width}
           >
             <source
-              src={post.secure_media.reddit_video.scrubber_media_url}
+              src={post.secure_media.reddit_video.fallback_url}
               type="video/mp4"
             />
           </video>
@@ -41,7 +43,7 @@ const PostSample = ({ post }) => {
           <div className="bg-black rounded-xl">
             <img
               src={post.preview.images[0].source.url}
-              className="m-auto max-w-fit rounded-xl max-h-100"
+              className="m-auto max-w-30 rounded-xl max-h-96 md:max-w-full md:max-h-100 sm:max-w-48 sm:max-h-40 lg:max-w-full xl:max-w-100"
               height={post.preview.images[0].source.height}
               width={post.preview.images[0].source.width}
             />
@@ -60,11 +62,15 @@ const PostSample = ({ post }) => {
           <h3>{post.subreddit_name_prefixed}</h3>
           <div className="flex items-center gap-2 text-light-gray">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
-            <p>{formatDistanceStrict(created, today)} ago</p>
+            <p className="text-sm md:text-base">
+              {formatDistanceStrict(created, today)} ago
+            </p>
           </div>
         </div>
-        <h4 className="my-2 text-xl font-bold">{post.title}</h4>
-        <div className="">{mediaContent}</div>
+        <h4 className="my-2 text-base font-bold md:text-lg lg:text-xl">
+          {post.title}
+        </h4>
+        <div className="bg-black rounded-xl">{mediaContent}</div>
         <div className="flex items-center">
           <div className="flex items-center justify-around my-2 rounded-full max-w-28 bg-gray">
             <FontAwesomeIcon
