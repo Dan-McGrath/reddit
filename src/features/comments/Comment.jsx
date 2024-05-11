@@ -7,11 +7,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDistanceStrict, fromUnixTime } from "date-fns";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import Replies from "./Replies";
 
 const Comment = ({ comment }) => {
+  const [showReplies, setShowReplies] = useState(false);
   const today = Date.now();
   const replies = comment.data.replies;
-
+  console.log(replies);
   let numReplies;
   if (replies) {
     numReplies = replies.data.children.length;
@@ -24,6 +27,7 @@ const Comment = ({ comment }) => {
   } else {
     created = Date.now();
   }
+
   return (
     <div className="my-3">
       <div className="flex gap-2">
@@ -52,12 +56,26 @@ const Comment = ({ comment }) => {
         {numReplies > 0 && (
           <>
             <div className="flex items-center justify-between px-1 mx-4 rounded-full bg-gray hover:bg-white hover:text-dark-gray">
-              <FontAwesomeIcon icon={faMessage} className="py-1 pl-2 ml-1" />
-              <button className="px-2 py-1 ">{numReplies} Replies</button>
+              <button
+                onClick={() => setShowReplies(!showReplies)}
+                className="flex items-center px-2 py-1"
+              >
+                <FontAwesomeIcon icon={faMessage} className="py-1 pr-2" />
+                {numReplies} Replies
+              </button>
             </div>
           </>
         )}
       </div>
+      {showReplies && (
+        <>
+          {replies.data.children.map((reply) => (
+            <>
+              <Replies reply={reply} />
+            </>
+          ))}
+        </>
+      )}
     </div>
   );
 };
