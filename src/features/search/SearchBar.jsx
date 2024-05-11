@@ -25,26 +25,26 @@ const SearchBar = () => {
 
   return (
     <>
-      <search className="my-2 min-w-fit">
+      <search className=" min-w-fit max-h-10">
         <label className="relative block">
           <span className="sr-only">Search</span>
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
-              className="w-5 h-5 text-dark-gray"
+              className="w-5 h-4 lg:h-5 text-dark-gray"
             />
           </span>
           <input
             type="search"
             placeholder="Search Reddit"
-            className="block w-full py-2 pr-3 bg-white border rounded-full shadow-sm placeholder:italic placeholder:text-dark-gray border-dark-gray pl-9 focus:outline-none focus:border-logo focus:ring-logo focus:ring-1 sm:text-sm text-dark-gray min-w-96"
+            className="block w-full py-1 pr-3 bg-white border rounded-full shadow-sm placeholder:italic placeholder:text-dark-gray border-dark-gray pl-9 focus:outline-none focus:border-logo focus:ring-logo focus:ring-1 sm:text-sm text-dark-gray min-w-96 md:py-2 sm:py-2"
             onChange={onSearchChangeHandler}
             value={searchTerm}
           />
         </label>
       </search>
       {searchResults.length > 0 && (
-        <div className="absolute z-10 block p-2 mx-auto overflow-scroll overflow-x-hidden rounded-lg top-20 max-w-96 bg-gray max-h-96">
+        <div className="absolute z-10 block p-2 mx-auto overflow-scroll overflow-x-hidden rounded-lg top-16 lg:top-16 max-w-96 bg-gray max-h-96">
           {searchResults.map((result) => (
             <div key={result.data.id} className="py-1 ">
               <SearchResults result={result} />
