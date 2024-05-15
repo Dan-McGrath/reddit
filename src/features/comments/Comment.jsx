@@ -15,10 +15,22 @@ const Comment = ({ comment }) => {
   const today = Date.now();
   const replies = comment.data.replies;
 
-  let numReplies;
+  let filteredReplies;
   if (replies) {
-    numReplies = replies.data.children.length;
+    filteredReplies = replies.data.children.filter(
+      (reply) => reply.kind === "t1",
+    );
   }
+
+  let numReplies = 0;
+  if (replies) {
+    replies.data.children.forEach((reply) => {
+      if (reply.kind === "t1") {
+        numReplies += 1;
+      }
+    });
+  }
+
   let created;
   if (comment.data.created) {
     created = fromUnixTime(comment.data.created);
@@ -69,7 +81,7 @@ const Comment = ({ comment }) => {
       </div>
       {showReplies && (
         <div className="relative left-10 max-w-fit">
-          {replies.data.children.map((reply) => (
+          {filteredReplies.map((reply) => (
             <div key={reply.data.id}>
               <Replies reply={reply} />
             </div>
