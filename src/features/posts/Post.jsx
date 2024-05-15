@@ -58,10 +58,10 @@ const Post = ({ post }) => {
     <>
       <section>
         <div className="flex items-center gap-2 my-1">
-          <h3 className="text-xs md:text-base">
+          <h3 className="text-xs md:text-base text-white/70">
             {post.subreddit_name_prefixed}
           </h3>
-          <div className="flex items-center gap-2 text-light-gray">
+          <div className="flex items-center gap-2 text-white/70">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
             <p className="text-xs md:text-base">
               {formatDistanceStrict(created, today)} ago

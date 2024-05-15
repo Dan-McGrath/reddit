@@ -18,8 +18,8 @@ const Replies = ({ reply }) => {
     content = (
       <>
         <div className="flex gap-2 my-1">
-          <p>{reply.data.author}</p>
-          <div className="flex items-center gap-2 text-light-gray">
+          <p className="text-white/70">{reply.data.author}</p>
+          <div className="flex items-center gap-2 text-white/70">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
             <p>{formatDistanceStrict(today, created)} ago</p>
           </div>

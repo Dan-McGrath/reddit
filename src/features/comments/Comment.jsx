@@ -43,8 +43,8 @@ const Comment = ({ comment }) => {
   return (
     <div className="my-3">
       <div className="flex gap-2">
-        <p>{comment.data.author}</p>
-        <div className="flex items-center gap-2 text-light-gray">
+        <p className="text-white/70">{comment.data.author}</p>
+        <div className="flex items-center gap-2 text-white/70">
           <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
           <p>{formatDistanceStrict(today, created)} ago</p>
         </div>
