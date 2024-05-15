@@ -71,7 +71,7 @@ const PostSample = ({ post }) => {
           {post.title}
         </h4>
         <div className="bg-black rounded-xl">{mediaContent}</div>
-        <div className="flex items-center">
+        <div className="flex items-center mt-2">
           <div className="flex items-center justify-around my-2 rounded-full max-w-28 bg-gray">
             <FontAwesomeIcon
               icon={faUpLong}
