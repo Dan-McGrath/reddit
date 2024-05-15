@@ -23,7 +23,7 @@ const SamplePosts = () => {
           <>
             <div
               key={post.data.id}
-              className="rounded-xl my-3 px-8 mx-2 hover:bg-navy cursor-pointer col-start-3 col-end-11"
+              className="col-start-3 col-end-11 px-8 py-3 mx-2 my-3 cursor-pointer rounded-xl hover:bg-navy"
             >
               <PostSample post={post.data} />
             </div>
