@@ -13,31 +13,65 @@ const Post = ({ post }) => {
   const created = fromUnixTime(post.created_utc);
 
   let mediaContent;
-  if (post.preview) {
-    mediaContent = (
-      <>
-        <img
-          width={post.preview.images[0].source.width}
-          height={post.preview.images[0].source.height}
-          src={post.preview.images[0].source.url}
-        />
-      </>
-    );
+  if (post.secure_media) {
+    if (post.secure_media.reddit_video) {
+      mediaContent = (
+        <>
+          <video
+            autoPlay
+            muted
+            controls
+            className="max-w-full m-auto max-h-28 rounded-xl md:max-h-60 lg:max-h-96 xl:max-h-100"
+            height={post.secure_media.reddit_video.height}
+            width={post.secure_media.reddit_video.width}
+          >
+            <source
+              src={post.secure_media.reddit_video.fallback_url}
+              type="video/mp4"
+            />
+          </video>
+        </>
+      );
+    } else if (post.secure_media.oembed) {
+      mediaContent = <>{post.secure_media.oembed.html}</>;
+    }
+  } else if (!post.secure_media) {
+    if (post.preview) {
+      mediaContent = (
+        <>
+          <div className="bg-black rounded-xl">
+            <img
+              src={post.preview.images[0].source.url}
+              className="m-auto max-w-30 rounded-xl max-h-96 md:max-w-full md:max-h-100 sm:max-w-48 sm:max-h-40 lg:max-w-full xl:max-w-100"
+              height={post.preview.images[0].source.height}
+              width={post.preview.images[0].source.width}
+            />
+          </div>
+        </>
+      );
+    }
+  } else {
+    mediaContent = <></>;
   }
+
   return (
     <>
       <section>
         <div className="flex items-center gap-2 my-1">
-          <h3>{post.subreddit_name_prefixed}</h3>
+          <h3 className="text-xs md:text-base">
+            {post.subreddit_name_prefixed}
+          </h3>
           <div className="flex items-center gap-2 text-light-gray">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
-            <p>{formatDistanceStrict(created, today)} ago</p>
+            <p className="text-xs md:text-base">
+              {formatDistanceStrict(created, today)} ago
+            </p>
           </div>
         </div>
-        <h4 className="my-2 text-xl font-bold">{post.title}</h4>
+        <h4 className="my-2 text-base font-bold md:text-lg">{post.title}</h4>
       </section>
       <article
-        className="link"
+        className="text-sm link md:text-base lg:text-lg"
         dangerouslySetInnerHTML={{ __html: post.selftext_html }}
       ></article>
       <div className="flex items-center">
@@ -57,7 +91,7 @@ const Post = ({ post }) => {
           <p className="px-2 py-1">{post.num_comments}</p>
         </div>
       </div>
-      <div>{mediaContent}</div>
+      <div className="flex justify-center">{mediaContent}</div>
     </>
   );
 };
