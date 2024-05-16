@@ -10,6 +10,7 @@ const Header = () => {
         <FontAwesomeIcon
           icon={faReddit}
           className="col-end-2 m-3 text-3xl bg-white border-2 rounded-full md:text-4xl lg:text-5xl border-logo text-logo"
+          alt="logo"
         />
       </Link>
       <div className="flex justify-center col-start-3 col-end-11 m-auto md:max-w-40 max-w-96 lg:max-w-fit">
