@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 const Post = ({ post }) => {
   const today = Date.now();
   const created = fromUnixTime(post.created_utc);
+  const timeAgo = formatDistanceStrict(created, today);
 
   let mediaContent;
   if (post.secure_media) {
@@ -58,14 +59,12 @@ const Post = ({ post }) => {
     <>
       <section>
         <div className="flex items-center gap-2 my-1">
-          <h3 className="text-xs md:text-base text-white/70">
+          <h3 role="heading" className="text-xs md:text-base text-white/70">
             {post.subreddit_name_prefixed}
           </h3>
           <div className="flex items-center gap-2 text-white/70">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
-            <p className="text-xs md:text-base">
-              {formatDistanceStrict(created, today)} ago
-            </p>
+            <p className="text-xs md:text-base">{timeAgo} ago</p>
           </div>
         </div>
         <h4 className="my-2 text-base font-bold md:text-lg">{post.title}</h4>
