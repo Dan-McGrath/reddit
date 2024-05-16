@@ -40,7 +40,7 @@ export const searchSlice = createSlice({
   },
 });
 
-export const { setSearchTerm, clearSearchTerm } = searchSlice.actions;
+export const { setSearchTerm } = searchSlice.actions;
 export const selectSearchResults = (state) => state.search.searchResults;
 export const isLoadingResults = (state) => state.search.isLoadingResults;
 export const selectSearchTerm = (state) => state.search.searchTerm;
