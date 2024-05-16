@@ -25,7 +25,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <search className=" min-w-fit max-h-10">
+      <search className="min-w-20 max-h-10">
         <label className="relative block">
           <span className="sr-only">Search</span>
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -37,7 +37,7 @@ const SearchBar = () => {
           <input
             type="search"
             placeholder="Search Reddit"
-            className="block w-full py-1 pr-3 bg-white border rounded-full shadow-sm placeholder:italic placeholder:text-dark-gray border-dark-gray pl-9 focus:outline-none focus:border-logo focus:ring-logo focus:ring-1 sm:text-sm text-dark-gray min-w-96 md:py-2 sm:py-2"
+            className="block w-full py-1 pr-3 bg-white border rounded-full shadow-sm sm:max-w-20 md:max-w-20 placeholder:italic placeholder:text-dark-gray border-dark-gray pl-9 focus:outline-none focus:border-logo focus:ring-logo focus:ring-1 sm:text-sm text-dark-gray md:py-2 sm:py-2"
             onChange={onSearchChangeHandler}
             value={searchTerm}
           />
