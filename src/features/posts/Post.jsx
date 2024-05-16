@@ -42,7 +42,7 @@ const Post = ({ post }) => {
           <div className="bg-black rounded-xl">
             <img
               src={post.preview.images[0].source.url}
-              className="m-auto max-w-30 rounded-xl max-h-96 md:max-w-full md:max-h-100 sm:max-w-48 sm:max-h-40 lg:max-w-full xl:max-w-100"
+              className="m-auto max-w-30 rounded-xl max-h-96 md:max-w-full md:max-h-full sm:max-w-48 sm:max-h-40 lg:max-w-full xl:max-w-100"
               height={post.preview.images[0].source.height}
               width={post.preview.images[0].source.width}
             />
