@@ -58,7 +58,7 @@ const PostSample = ({ post }) => {
   return (
     <>
       <Link to={post.permalink}>
-        <div className="flex items-center gap-2 my-1">
+        <div className="flex flex-wrap items-center max-w-full gap-2 mx-auto my-1 sm:text-xs md:text-sm">
           <h3 className="text-white/70">{post.subreddit_name_prefixed}</h3>
           <div className="flex items-center gap-2 text-white/70">
             <FontAwesomeIcon icon={faCircle} className="w-1 text-white" />
@@ -71,13 +71,13 @@ const PostSample = ({ post }) => {
           {post.title}
         </h4>
         <div className="bg-black rounded-xl">{mediaContent}</div>
-        <div className="flex items-center mt-2">
+        <div className="flex items-center justify-center mt-2 sm:text-sm md:text-sm">
           <div className="flex items-center justify-around my-2 rounded-full max-w-28 bg-gray">
             <FontAwesomeIcon
               icon={faUpLong}
               className="p-2 mx-1 rounded-full hover:bg-gray"
             />
-            <p>{post.score}</p>
+            <p className="text-sm sm:text-xs">{post.score}</p>
             <FontAwesomeIcon
               icon={faDownLong}
               className="p-2 mx-1 rounded-full"
