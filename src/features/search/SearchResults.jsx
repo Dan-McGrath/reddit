@@ -1,6 +1,9 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { setSearchTerm } from "./searchSlice";
+import { useDispatch } from "react-redux";
 
 const SearchResults = ({ result }) => {
+  const dispatch = useDispatch();
   let mediaContent;
   if (result.data.preview) {
     mediaContent = (
@@ -18,15 +21,22 @@ const SearchResults = ({ result }) => {
   }
 
   return (
-    <div className="flex items-center justify-between gap-4 p-1 rounded-lg hover:bg-dark-gray">
-      <div className="flex flex-col">
-        <h4 className="text-lg">{result.data.title}</h4>
-        <p className="text-sm font-thin">
-          {result.data.subreddit_name_prefixed}
-        </p>
-      </div>
-      {mediaContent}
-    </div>
+    <>
+      <Link to={result.data.permalink}>
+        <div
+          onClick={() => dispatch(setSearchTerm(""))}
+          className="flex items-center justify-between gap-4 p-1 rounded-lg hover:bg-dark-gray"
+        >
+          <div className="flex flex-col">
+            <h4 className="text-lg">{result.data.title}</h4>
+            <p className="text-sm font-thin">
+              {result.data.subreddit_name_prefixed}
+            </p>
+          </div>
+          {mediaContent}
+        </div>
+      </Link>
+    </>
   );
 };
 
