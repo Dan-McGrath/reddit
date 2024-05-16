@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { setSearchTerm } from "./searchSlice";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 const SearchResults = ({ result }) => {
   const dispatch = useDispatch();
@@ -38,6 +39,10 @@ const SearchResults = ({ result }) => {
       </Link>
     </>
   );
+};
+
+SearchResults.propTypes = {
+  result: PropTypes.object,
 };
 
 export default SearchResults;
